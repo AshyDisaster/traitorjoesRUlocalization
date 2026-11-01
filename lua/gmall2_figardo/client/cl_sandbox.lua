@@ -579,19 +579,6 @@ hook.Add("HUDPaint", "TraitorJoesRadarFunction", function()
 	RADAR:Draw()
 end)
 
--- Disguiser
-
-hook.Add("HUDDrawTargetID", "TraitorJoesDisguiserFunction", function()
-	local tr = util.GetPlayerTrace(LocalPlayer())
-	local trace = util.TraceLine(tr)
-	if !trace.Hit or !trace.HitNonWorld then return end
-
-	local ent = trace.Entity
-	if !ent:IsPlayer() then return end
-
-	if ent:GetNWBool("disguised", false) then return false end
-end)
-
 -- SWEP Helpers
 
 local function ReceiveCredits()

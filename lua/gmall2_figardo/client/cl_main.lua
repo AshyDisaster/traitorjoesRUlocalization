@@ -238,7 +238,12 @@ hook.Add("HUDDrawTargetID", "TraitorJoesTargetID", function()
 	if !tr.Hit then return end
 
 	local ent = tr.Entity
-	if !ent then return end
+	if !IsValid(ent) then return end
+
+	-- Disguiser
+	if engine.ActiveGamemode() != "terrortown" and ent:IsPlayer() and ent:GetNWBool("disguised", false) then
+		return false
+	end
 
 	local func = targetIDEnts[ent:GetNW2String("gmall_figardo")]
 	if !func then
